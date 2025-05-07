@@ -1,0 +1,89 @@
+﻿@model PetBnB.ViewModels.ContactUsSubmissionVM
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <section id="contactForm">
+                @using (Html.BeginForm("Index", "ContactUs", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Have a question or comment? Send us a message.</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control"})
+                            @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(m => m.Subject, new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        @Html.LabelFor(m => m.Message, new { @class = "col-md-2 col-form-label" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", rows = 5 })
+                            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="offset-md-2 col-md-10">
+                            <input type="submit" value="Send Message" class="btn btn-outline-dark" />
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+
+        <div class="col-md-4">
+            <section id="contactInfo">
+                <h5>Our Office</h5>
+                <p>
+                    1234 Main Street<br />
+                    Anytown, USA 12345<br />
+                    Phone: (555) 123‑4567
+                </p>
+                <h5>Hours</h5>
+                <p>
+                    Mon–Fri: 9am–5pm<br />
+                    Sat: 10am–2pm<br />
+                    Sun: Closed
+                </p>
+            </section>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

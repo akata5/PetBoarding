@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace WebAppTemplateTests
+namespace PetBnBTests
 {
     [TestFixture]
     public class BaseTests
